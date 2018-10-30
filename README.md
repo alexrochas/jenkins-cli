@@ -1,5 +1,7 @@
 # Jenkins CLI
 
+Using [Python Prompt-Toolkit](https://github.com/prompt-toolkit/python-prompt-toolkit).
+
 ## How to
 
 Clone the project, install python dependencies and run it:
