@@ -1,6 +1,7 @@
 from json import load
 from requests import get
 
+
 def status():
     config = load_properties()
     response = get(config['url'], headers=config['headers'])
@@ -10,6 +11,6 @@ def status():
 
 
 def load_properties():
-    with open('jenkins/config.json', 'r') as f: 
+    with open('jenkins/config.json', 'r') as f:
         config = load(f)
     return config
