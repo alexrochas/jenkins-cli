@@ -1,10 +1,11 @@
+from jenkins import get_status
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.key_binding import KeyBindings
-from actions import status
 
 word_completer = WordCompleter([
-    'status', 'build'
+    'cartoes-pagamento-service',
+    'cartoes-core-adapter'
 ], ignore_case=True)
 
 kb = KeyBindings()
@@ -20,18 +21,12 @@ def _(event):
 
 
 def _read_input():
-    return prompt('>>> ',
+    return prompt('>>> Select your service >>> ',
                   completer=word_completer,
                   complete_while_typing=False,
                   key_bindings=kb)
 
 
-def main():
-    print('Welcome to Jenkins CLI')
-    while True:
-        answer = _read_input()
-        status()
-
-
-if __name__ == '__main__':
-    main()
+def status():
+    answer = _read_input()
+    get_status(answer)
