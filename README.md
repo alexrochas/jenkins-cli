@@ -11,7 +11,7 @@ Clone the project, install python dependencies and run it:
 ```
 
 ```bash
-~/jenkins-cli/$ pip3 install requirements.txt
+~/jenkins-cli/$ pip3 install -r requirements.txt
 ```
 
 ```bash
