@@ -24,6 +24,16 @@ def deploy_job(job, env):
     print(response)
 
 
+def load_jobs():
+    config = load_properties()
+    response = get(_build_load_url(config['url']),
+                   headers=config['headers'])
+
+    jobs = response.json()['jobs']
+    for i in range(len(jobs)):
+        print('name: ' + jobs[i]['name'])
+
+
 def load_properties():
     with open('jenkins/config.json', 'r') as f:
         config = load(f)
@@ -36,3 +46,7 @@ def _build_status_url(url, job):
 
 def _build_deploy_url(url, job, env):
     return url + 'job/Plataforma/job/' + job + '/job/' + env + '/buildWithParameters'
+
+
+def _build_load_url(url):
+    return url + 'job/Plataforma/api/json?tree=jobs[name]'
