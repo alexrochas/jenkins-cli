@@ -22,10 +22,15 @@ def complete(current_buffer):
     return [*current_dict.keys()][0]
 
 
+def _add_elements_into_list(element_list, element):
+    element_list.append(element)
+    return element_list
+
+
 sql_syntax = {
     'select': {
         tuple(_fetch_fields()): {
-            'from': {
+            tuple(_add_elements_into_list(_fetch_fields(), 'from')): {
                 tuple(_fetch_tables()): None
             }
         }
