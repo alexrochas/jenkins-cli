@@ -29,9 +29,8 @@ def load_jobs():
     response = get(_build_load_url(config['url']),
                    headers=config['headers'])
 
-    jobs = response.json()['jobs']
-    for i in range(len(jobs)):
-        print('name: ' + jobs[i]['name'])
+    response_jobs = response.json()['jobs']
+    return response_jobs
 
 
 def load_properties():

@@ -3,37 +3,7 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.key_binding import KeyBindings
 from actions import status, deploy
 from prompt_toolkit.completion import Completer, Completion
-from jenkins import load_jobs
-import pdb
-
-
-def _get_branches():
-    return ['dev', 'hlg', 'master']
-
-
-def _get_services():
-    return ['cartoes-core-adapter', 'cartoes-pagamento-service']
-
-
-def _get_actions():
-    return ['build', 'status']
-
-
-def _add_element_into_dictionary(elements):
-    for element in elements:
-        build_dictionary[element] = _get_services()
-
-
-def _add_none_into_dictionary(elements):
-    for element in elements:
-        build_dictionary[element] = ''
-
-
-build_dictionary = {
-    'build': _get_branches(),
-    'status': _get_services(),
-    'empty': _get_actions()
-}
+from setup import setup, build_dictionary
 
 
 class MyCustomCompleter(Completer):
@@ -48,7 +18,7 @@ class MyCustomCompleter(Completer):
             key_word_index = len(line) - 2
             last_word = line[key_word_index]
 
-        for i in build_dictionary[last_word]:
+        for i in build_dictionary(last_word):
             yield Completion(i, start_position=-len(word_before_cursor))
 
 
@@ -72,9 +42,7 @@ def _read_input():
 
 
 def main():
-    load_jobs()
-    _add_element_into_dictionary(_get_branches())
-    _add_none_into_dictionary(_get_services())
+    setup()
     print('Welcome to Jenkins CLI')
     while True:
         answer = _read_input()
