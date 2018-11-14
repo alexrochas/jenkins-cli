@@ -3,6 +3,9 @@
 ### VENV ###
 .jenkins-cli
 
+### Idea ###
+.idea
+
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
